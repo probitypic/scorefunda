@@ -1,6 +1,6 @@
 class SignInModel {
-  late String phoneNo;
+  late String phoneNumber;
   late String password;
-  late String userName;
   late String token;
+  late String userName;
 }
