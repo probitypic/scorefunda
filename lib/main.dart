@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scorefunda/controller/signin_controller_provider.dart';
 import 'package:scorefunda/controller/signup_controller_provider.dart';
+import 'package:scorefunda/controller/verify_dob_controller_provider.dart';
 import 'package:scorefunda/controller/verify_mobile_controller_provider.dart';
 
 import 'package:scorefunda/views/home_screen.dart';
@@ -8,6 +9,7 @@ import 'package:scorefunda/views/signup_screen.dart';
 import 'package:scorefunda/views/splash_screen.dart';
 import 'package:scorefunda/views/signIn_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:scorefunda/views/verify_dob_screen.dart';
 import 'package:scorefunda/views/verify_mobile_screen.dart';
 
 void main() {
@@ -26,16 +28,19 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<SignUpControllerProvider>(
             create: ((context) => SignUpControllerProvider())),
         ChangeNotifierProvider<VerifyMobileControllerProvider>(
-            create: ((context) => VerifyMobileControllerProvider()))
+            create: ((context) => VerifyMobileControllerProvider())),
+        ChangeNotifierProvider<VerifyDobControllerProvider>(
+          create: ((context) => VerifyDobControllerProvider()),
+        )
       ],
       child: MaterialApp(
-        initialRoute: SignUpScreen.id,
+        initialRoute: SplashScreen.id,
         routes: {
-          VerifyMobile.id: ((context) => VerifyMobile()),
           SignUpScreen.id: (context) => SignUpScreen(),
           SplashScreen.id: ((context) => SplashScreen()),
           SignInScreen.id: ((context) => SignInScreen()),
           HomeScreen.id: ((context) => HomeScreen()),
+          VerifyDobScreen.id: ((context) => VerifyDobScreen()),
         },
       ),
     );

@@ -21,4 +21,19 @@ class AuthApi {
     http.Response res = await http.post(url, body: params);
     return res;
   }
+
+  Future<http.Response> ValidateOtp(String mobile, String otp) async {
+    var url = Uri.parse('http://restsf.nullplex.co.in/api/verifyOtp');
+    var params = {'mobile': mobile, 'otp': otp};
+    http.Response res = await http.post(url, body: params);
+    return res;
+  }
+
+  Future<http.Response> SignUpInfo(
+      String dob, String email, String token) async {
+    var url = Uri.parse('http://restsf.nullplex.co.in/api/registerinfo');
+    var params = {'dob': dob, 'email': email, 'token': token};
+    http.Response res = await http.put(url, body: params);
+    return res;
+  }
 }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:scorefunda/controller/signup_controller_provider.dart';
@@ -6,6 +8,8 @@ import 'package:scorefunda/views/Widgets/top_bar.dart';
 import 'package:scorefunda/views/Widgets/inputfield.dart';
 import 'package:scorefunda/views/Widgets/rounded_Button.dart';
 import 'package:provider/provider.dart';
+import 'package:scorefunda/views/signIn_screen.dart';
+import 'package:scorefunda/views/verify_mobile_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -89,18 +93,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         context,
                         listen: false)
                     .UserSignUp();
-                if (Status == true) {}
+                if (Status == true) {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) => VerifyMobile(
+                              PhoneNumber:
+                                  Provider.of<SignUpControllerProvider>(context,
+                                          listen: false)
+                                      .model
+                                      .mobileNo))));
+                }
               },
               ButtonText: "Continue to Sign Up",
             ),
             SizedBox(height: 10),
-            // Text(
-            //   errorMessage,
-            //   style: TextStyle(
-            //     color: Colors.red,
-            //     fontFamily: 'QuickSand',
-            //   ),
-            // ),
+            Text(
+              Provider.of<SignUpControllerProvider>(context, listen: false)
+                  .model
+                  .error,
+              style: TextStyle(
+                color: Colors.red,
+              ),
+            ),
           ],
         ),
       ),

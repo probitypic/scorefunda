@@ -9,6 +9,7 @@ import 'package:scorefunda/views/Widgets/rounded_Button.dart';
 import 'package:scorefunda/views/Constants.dart';
 import 'package:provider/provider.dart';
 import 'package:scorefunda/views/home_screen.dart';
+import 'package:scorefunda/views/signup_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -44,7 +45,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       GestureDetector(
                         onTap: () {
                           setState(() {
-                            // Navigator.pushNamed(context, SignUpScreen.id);
+                            Navigator.pushNamed(context, SignUpScreen.id);
                           });
                         },
                         child: Text("Sign Up",

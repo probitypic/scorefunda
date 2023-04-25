@@ -3,4 +3,5 @@ class SignUpModel {
   late String userName;
   late String password;
   late String otp;
+  late String error = "";
 }

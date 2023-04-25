@@ -9,6 +9,8 @@ class SignUpControllerProvider extends ChangeNotifier {
   SignUpModel model = SignUpModel();
   AuthApi apis = AuthApi();
 
+  getUserName() => model.userName;
+
   MobileNumberController(String value) {
     model.mobileNo = value;
   }
@@ -21,6 +23,10 @@ class SignUpControllerProvider extends ChangeNotifier {
     model.password = value;
   }
 
+  GetOtp() {
+    return model.otp;
+  }
+
   Future<bool> UserSignUp() async {
     try {
       http.Response res =
@@ -29,9 +35,10 @@ class SignUpControllerProvider extends ChangeNotifier {
         model.otp = jsonDecode(res.body)["data"]["otp"].toString();
         return true;
       }
+      model.error = jsonDecode(res.body)["message"];
       return false;
     } catch (e) {
-      throw e;
+      print(e);
     }
     return false;
   }
