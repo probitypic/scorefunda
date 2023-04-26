@@ -301,11 +301,14 @@ Drawer HomeScreenDrawer(BuildContext context) {
           ),
           Container(
               // padding: EdgeInsets.only(left: 110),
-              child: Text(
-            "Hello, ${Provider.of<HomeScreenControllerProvider>(context, listen: false).model.userName}",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            textAlign: TextAlign.center,
-          )),
+              child: Consumer<HomeScreenControllerProvider>(
+                  builder: (context, controller, snapshot) {
+            return Text(
+              "Hello, ${controller.model.userName}",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            );
+          })),
           Divider(
             thickness: 2,
           ),
