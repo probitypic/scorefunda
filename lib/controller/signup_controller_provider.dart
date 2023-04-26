@@ -33,6 +33,7 @@ class SignUpControllerProvider extends ChangeNotifier {
           await apis.signUp(model.userName, model.mobileNo, model.password);
       if (res.statusCode == 200) {
         model.otp = jsonDecode(res.body)["data"]["otp"].toString();
+
         return true;
       }
       model.error = jsonDecode(res.body)["message"];

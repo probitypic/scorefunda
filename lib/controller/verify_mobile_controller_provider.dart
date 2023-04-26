@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:scorefunda/controller/signup_controller_provider.dart';
 import 'package:scorefunda/models/signup_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class VerifyMobileControllerProvider extends ChangeNotifier {
   late String otp;
@@ -23,6 +24,8 @@ class VerifyMobileControllerProvider extends ChangeNotifier {
       http.Response res = await apis.ValidateOtp(ContactNo, otp);
       if (res.statusCode == 200) {
         _Token = jsonDecode(res.body)["data"]["tokendata"]["token"];
+        SharedPreferences pref = await SharedPreferences.getInstance();
+        pref.setString("token", _Token);
         return true;
       }
       return false;

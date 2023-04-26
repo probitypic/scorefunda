@@ -12,6 +12,8 @@ import 'package:provider/provider.dart';
 import 'package:scorefunda/views/verify_dob_screen.dart';
 import 'package:scorefunda/views/verify_mobile_screen.dart';
 
+import 'controller/home_screen_controller_provider.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -31,10 +33,13 @@ class MyApp extends StatelessWidget {
             create: ((context) => VerifyMobileControllerProvider())),
         ChangeNotifierProvider<VerifyDobControllerProvider>(
           create: ((context) => VerifyDobControllerProvider()),
-        )
+        ),
+        ChangeNotifierProvider<HomeScreenControllerProvider>(
+            create: ((context) => HomeScreenControllerProvider()))
       ],
       child: MaterialApp(
         initialRoute: SplashScreen.id,
+        theme: ThemeData(fontFamily: 'QuickSand'),
         routes: {
           SignUpScreen.id: (context) => SignUpScreen(),
           SplashScreen.id: ((context) => SplashScreen()),

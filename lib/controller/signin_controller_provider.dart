@@ -4,6 +4,7 @@ import 'package:scorefunda/models/sign_in_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:scorefunda/Services/Auth.dart';
 import 'package:scorefunda/views/home_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignInControllerProvider extends ChangeNotifier {
   SignInModel model = SignInModel();
@@ -26,6 +27,10 @@ class SignInControllerProvider extends ChangeNotifier {
       if (res.statusCode == 200) {
         model.token = jsonDecode(res.body)["data"]["tokendata"]["token"];
         model.userName = jsonDecode(res.body)["data"]["user"]["name"];
+
+        SharedPreferences pref = await SharedPreferences.getInstance();
+        pref.setString("token", model.token);
+        pref.setString("username", model.userName);
         return true;
       }
     } catch (e) {
